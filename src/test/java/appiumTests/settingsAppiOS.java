@@ -17,6 +17,8 @@ import java.time.Duration;
 public class settingsAppiOS {
 
     private IOSDriver driver;
+    private void performTap(int i, int i1) {
+    }
 
     @BeforeClass
     public void setUp() throws Exception {
@@ -25,18 +27,39 @@ public class settingsAppiOS {
         options.setCapability("udid", "88E4FF32-96D7-4A61-A038-DA0FF519FC8C");
         options.setCapability("bundleId", "com.apple.Preferences");
         options.setCapability("automationName", "XCUITest");
-        String SERVER = "http://127.0.0.1:8100";
+        String SERVER = "http://127.0.0.1:4723";
         driver = new IOSDriver(new URL(SERVER), options);
     }
 
 
-    @Test
-    public void clickScreenTime(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    //@Test(priority = 1)
+    //public void clickScreenTime(){
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        driver.findElement(AppiumBy.accessibilityId("Screen Time")).click();
+        //driver.findElement(AppiumBy.accessibilityId("Screen Time")).click();
+
+    //}
+
+    @Test(priority = 1)
+    public void testTouchActions() {
+        // Perform tap gesture at coordinates (280, 615)
+        performTap(280, 615);
+
+        // Perform tap gesture at coordinates (264, 557)
+        performTap(264, 557);
 
     }
+
+    @Test(priority = 2)
+    public void clickDeveloper(){
+
+        // Click on element with accessibility ID "Developer"
+        driver.findElement(AppiumBy.accessibilityId("Developer")).click();
+    }
+
+    @Test(priority = 3)
+
+
 
     @AfterClass
     public void teardown(){
